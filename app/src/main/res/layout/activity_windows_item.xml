@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/building_item_txt_status"
+        android:id="@+id/act_windows_item_txt_status"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -22,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/building_item_txt_window_name"
+        android:id="@+id/act_windows_item_txt_window_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -30,11 +30,11 @@
         android:layout_marginEnd="16dp"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/building_item_txt_status"
+        app:layout_constraintStart_toEndOf="@+id/act_windows_item_txt_status"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/building_item_txt_window_room"
+        android:id="@+id/act_windows_item_txt_window_room"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -44,6 +44,6 @@
         android:text="TextView"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/building_item_txt_status"
-        app:layout_constraintTop_toBottomOf="@+id/building_item_txt_window_name" />
+        app:layout_constraintStart_toEndOf="@+id/act_windows_item_txt_status"
+        app:layout_constraintTop_toBottomOf="@+id/act_windows_item_txt_window_name" />
 </androidx.constraintlayout.widget.ConstraintLayout>

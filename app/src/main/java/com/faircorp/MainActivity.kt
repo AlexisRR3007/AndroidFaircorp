@@ -1,18 +1,16 @@
 package com.faircorp
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import android.view.View
-import android.widget.EditText
-import android.widget.Toast
-import com.faircorp.model.WindowAdapter
-import com.faircorp.model.WindowService
+import com.faircorp.model.WindowsAdapterView
 
+const val WINDOW_ID_PARAM = "com.faircorp.windowid.attribute"
 const val WINDOW_NAME_PARAM = "com.faircorp.windowname.attribute"
+const val WINDOW_ROOM_PARAM = "com.faircorp.windowroom.attribute"
+const val WINDOW_STATUS_PARAM = "com.faircorp.windowstatus.attribute"
+const val WINDOW_CURTEMP_PARAM = "com.faircorp.windowcurtemp.attribute"
+const val WINDOW_TARTEMP_PARAM = "com.faircorp.windowtartemp.attribute"
 
 class MainActivity : BasicActivity() {
 
@@ -21,14 +19,10 @@ class MainActivity : BasicActivity() {
         setContentView(R.layout.activity_main)
     }
 
+    fun manageWindows(view: View) {
 
-    fun openWindow(view: View) {
-        val windowName = findViewById<EditText>(R.id.txt_window_name).text.toString()
+        val intent = Intent(this, WindowsActivity::class.java);
 
-        // Do something in response to button
-        val intent = Intent(this, WindowActivity::class.java).apply {
-            putExtra(WINDOW_NAME_PARAM, windowName)
-        }
         startActivity(intent)
     }
 }

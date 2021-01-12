@@ -7,12 +7,12 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.faircorp.R
 
-class WindowAdapter(val listener: OnWindowSelectedListener): RecyclerView.Adapter<WindowAdapter.WindowViewHolder>() { // (1)
+class WindowsAdapterView(val listener: OnWindowSelectedListener): RecyclerView.Adapter<WindowsAdapterView.WindowViewHolder>() { // (1)
 
     inner class WindowViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val name: TextView = view.findViewById(R.id.building_item_txt_window_name)
-        val room: TextView = view.findViewById(R.id.building_item_txt_window_room)
-        val status: TextView = view.findViewById(R.id.building_item_txt_status)
+        val name: TextView = view.findViewById(R.id.act_windows_item_txt_window_name)
+        val room: TextView = view.findViewById(R.id.act_windows_item_txt_window_room)
+        val status: TextView = view.findViewById(R.id.act_windows_item_txt_status)
     }
 
     private val items = mutableListOf<WindowDto>()
@@ -27,7 +27,7 @@ class WindowAdapter(val listener: OnWindowSelectedListener): RecyclerView.Adapte
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WindowViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.activity_building_item, parent, false)
+            .inflate(R.layout.activity_windows_item, parent, false)
         return WindowViewHolder(view)
     }
 
@@ -37,7 +37,7 @@ class WindowAdapter(val listener: OnWindowSelectedListener): RecyclerView.Adapte
             name.text = window.name
             status.text = window.windowStatus.toString()
             room.text =  "TODO" // window.room.name
-            itemView.setOnClickListener { listener.onWindowSelected(window.id) } // (1)
+            itemView.setOnClickListener { listener.onWindowSelected(window) } // (1)
         }
     }
 

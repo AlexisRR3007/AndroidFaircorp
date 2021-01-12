@@ -5,10 +5,10 @@
     android:id="@+id/list_windows"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BuildingActivity">
+    tools:context=".WindowsActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/building_list_windows"
+        android:id="@+id/act_windows_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="16dp"
