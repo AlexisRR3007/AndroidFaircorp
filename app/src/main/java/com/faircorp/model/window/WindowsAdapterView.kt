@@ -1,4 +1,4 @@
-package com.faircorp.model
+package com.faircorp.model.window
 
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater

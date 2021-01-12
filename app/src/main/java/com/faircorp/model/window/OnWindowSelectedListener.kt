@@ -1,4 +1,4 @@
-package com.faircorp.model
+package com.faircorp.model.window
 
 import com.faircorp.api.window.WindowDto
 
