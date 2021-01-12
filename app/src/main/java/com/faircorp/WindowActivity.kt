@@ -1,15 +1,12 @@
 package com.faircorp
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Switch
 import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
-import com.faircorp.model.ApiServices
-import com.faircorp.model.WindowDto
+import com.faircorp.api.ApiServices
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -36,16 +33,20 @@ class WindowActivity : BasicActivity() {
         val windowTarTemp = findViewById<TextView>(R.id.act_window_txt_window_target_temperature)
         val windowStatus = findViewById<TextView>(R.id.act_window_txt_window_status)
         val windowStatusSwitch = findViewById<Switch>(R.id.act_window_switch_status)
+        val windowDeleteSwitch = findViewById<Switch>(R.id.act_window_switch_delete)
+        val windowDeleteButton = findViewById<TextView>(R.id.act_window_btn_delete)
 
         windowName.text = name
         windowRoom.text = room
         windowCurTemp.text = curtemp
         windowTarTemp.text = tartemp
         windowStatus.text = status
-        windowStatusSwitch.isChecked = false;
+        windowStatusSwitch.isChecked = false
         if(status=="OPEN") {
-            windowStatusSwitch.isChecked = true;
+            windowStatusSwitch.isChecked = true
         }
+        windowDeleteSwitch.isChecked = false
+        windowDeleteButton.isClickable = false
 
     }
 
@@ -68,8 +69,12 @@ class WindowActivity : BasicActivity() {
                             ).show()
                         }
                     }
+                    .onSuccess {
+                        withContext(context = Dispatchers.Main) {
+                            windowStatus.text = "OPEN"
+                        }
+                    }
             }
-            windowStatus.text = "OPEN"
             windowStatusSwitch.isClickable = true;
         } else {
             windowStatusSwitch.isClickable = false;
@@ -84,9 +89,50 @@ class WindowActivity : BasicActivity() {
                             ).show()
                         }
                     }
+                    .onSuccess {
+                        withContext(context = Dispatchers.Main) {
+                            windowStatus.text = "CLOSED"
+                        }
+                    }
             }
-            windowStatus.text = "CLOSED"
             windowStatusSwitch.isClickable = true;
+        }
+    }
+
+    fun onDeleteSwitch(view: View) {
+        val windowDeleteSwitch = findViewById<Switch>(R.id.act_window_switch_delete)
+        val windowDeleteButton = findViewById<TextView>(R.id.act_window_btn_delete)
+
+        if(windowDeleteSwitch.isChecked) {
+            windowDeleteButton.isClickable = true
+        } else {
+            windowDeleteButton.isClickable = false
+        }
+    }
+
+    fun onDeleteWindow(view: View) {
+
+        val windowStatusSwitch = findViewById<Switch>(R.id.act_window_switch_status)
+        val windowStatus = findViewById<TextView>(R.id.act_window_txt_window_status)
+        val act = this
+
+            lifecycleScope.launch(context = Dispatchers.IO) {
+                runCatching { ApiServices().windowsApiService.deleteById(id).execute() }
+                    .onFailure {
+                        withContext(context = Dispatchers.Main) {
+                            Toast.makeText(
+                                applicationContext,
+                                "Error on switching the status $it",
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
+                    }
+                    .onSuccess {
+                        withContext(context = Dispatchers.Main) {
+                            act.finish()
+                        }
+                    }
+
         }
     }
 }

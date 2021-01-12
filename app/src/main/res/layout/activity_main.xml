@@ -41,6 +41,7 @@
         android:layout_marginTop="60dp"
         android:onClick="manageWindows"
         android:text="@string/act_main_manage_windows"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"

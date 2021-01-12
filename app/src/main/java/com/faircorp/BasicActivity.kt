@@ -23,7 +23,6 @@ open class BasicActivity : AppCompatActivity() {
             R.id.menu_email -> startActivity(
                 Intent(Intent.ACTION_SENDTO, Uri.parse("mailto://guillaume@dev-mind.fr"))
             )
-
         }
         return super.onContextItemSelected(item)
     }

@@ -1,4 +1,4 @@
-package com.faircorp.model
+package com.faircorp.api
 
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory

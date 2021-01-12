@@ -11,4 +11,5 @@
 
     <color name="act_window_description">#FF575757</color>
     <color name="act_window_property">#FF000000</color>
+    <color name="act_window_delete_button">#FFFF3333</color>
 </resources>

@@ -1,4 +1,4 @@
-package com.faircorp.model
+package com.faircorp.api
 
 data class RoomDto(val id: Long,
                    val name: String,
