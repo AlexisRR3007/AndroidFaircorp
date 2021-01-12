@@ -1,7 +1,7 @@
-package com.faircorp.api
+package com.faircorp.api.window
 
 
-import com.faircorp.model.WindowDto
+import com.faircorp.api.window.WindowDto
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.Call

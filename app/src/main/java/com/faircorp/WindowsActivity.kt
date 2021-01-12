@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.faircorp.api.ApiServices
+import com.faircorp.api.window.WindowDto
 import com.faircorp.model.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -75,6 +76,8 @@ class WindowsActivity : BasicActivity(), OnWindowSelectedListener {
             .putExtra(WINDOW_ID_PARAM, window.id)
             .putExtra(WINDOW_NAME_PARAM, window.name)
             .putExtra(WINDOW_ROOM_PARAM, window.room.name)
+            .putExtra(WINDOW_FLOOR_PARAM, window.room.floor.floorNumber.toString())
+            .putExtra(WINDOW_BUILDING_PARAM, window.room.floor.building.name)
             .putExtra(WINDOW_CURTEMP_PARAM, window.room.currentTemperature?.toString())
             .putExtra(WINDOW_TARTEMP_PARAM, window.room.targetTemperature?.toString())
             .putExtra(WINDOW_STATUS_PARAM, window.windowStatus.toString())

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.faircorp.R
+import com.faircorp.api.window.WindowDto
 
 class WindowsAdapterView(val listener: OnWindowSelectedListener): RecyclerView.Adapter<WindowsAdapterView.WindowViewHolder>() { // (1)
 
@@ -36,7 +37,7 @@ class WindowsAdapterView(val listener: OnWindowSelectedListener): RecyclerView.A
         holder.apply {
             name.text = window.name
             status.text = window.windowStatus.toString()
-            room.text =  "TODO" // window.room.name
+            room.text =  window.room.name
             itemView.setOnClickListener { listener.onWindowSelected(window) } // (1)
         }
     }

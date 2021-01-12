@@ -23,12 +23,16 @@ class WindowActivity : BasicActivity() {
         id = intent.getLongExtra(WINDOW_ID_PARAM,0)
         val name = intent.getStringExtra(WINDOW_NAME_PARAM)
         val room = intent.getStringExtra(WINDOW_ROOM_PARAM)
+        val floor = intent.getStringExtra(WINDOW_FLOOR_PARAM)
+        val building = intent.getStringExtra(WINDOW_BUILDING_PARAM)
         val curtemp = intent.getStringExtra(WINDOW_CURTEMP_PARAM)
         val tartemp = intent.getStringExtra(WINDOW_TARTEMP_PARAM)
         val status = intent.getStringExtra(WINDOW_STATUS_PARAM)
 
         val windowName = findViewById<TextView>(R.id.act_window_txt_window_name)
         val windowRoom = findViewById<TextView>(R.id.act_window_txt_window_room)
+        val windowFloor = findViewById<TextView>(R.id.act_window_txt_window_floor)
+        val windowBuilding = findViewById<TextView>(R.id.act_window_txt_window_building)
         val windowCurTemp = findViewById<TextView>(R.id.act_window_txt_window_current_temperature)
         val windowTarTemp = findViewById<TextView>(R.id.act_window_txt_window_target_temperature)
         val windowStatus = findViewById<TextView>(R.id.act_window_txt_window_status)
@@ -38,6 +42,8 @@ class WindowActivity : BasicActivity() {
 
         windowName.text = name
         windowRoom.text = room
+        windowFloor.text = floor
+        windowBuilding.text = building
         windowCurTemp.text = curtemp
         windowTarTemp.text = tartemp
         windowStatus.text = status

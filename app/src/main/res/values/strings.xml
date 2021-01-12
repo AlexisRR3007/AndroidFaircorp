@@ -12,12 +12,10 @@
     <string name="act_window_btn_delete">DELETE THE WINDOW</string>
     <string name="act_window_switch_delete">Enable the delete</string>
 
-    <string name="act_main_manage_windows">Manage windows</string>
-    <string name="act_main_windowname_hint">Window name</string>
-    <string name="act_main_welcome">Welcome on faircorp,\nthe app to manage buildings</string>
-    <string name="act_main_open_window">Open window</string>
 
-    <string name="menu_windows">Building windows</string>
+    <string name="act_main_welcome">Welcome on faircorp,\nthe app to manage buildings</string>
+    <string name="act_main_manage_windows">Manage windows</string>
+
     <string name="menu_website">Our website</string>
     <string name="menu_email">Send us an email</string>
 </resources>
