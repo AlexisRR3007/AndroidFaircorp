@@ -5,7 +5,7 @@
     android:id="@+id/list_heaters"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HeatersActivity">
+    tools:context=".activity.heater.HeatersActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/act_heaters_list"

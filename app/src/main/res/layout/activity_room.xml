@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".WindowActivity">
+    tools:context=".activity.room.RoomActivity">
 
     <TextView
         android:id="@+id/textView"
@@ -12,8 +12,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
-        android:text="@string/act_window_name"
-        android:textColor="@color/act_window_description"
+        android:text="@string/act_room_name"
+        android:textColor="@color/act_room_description"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -23,10 +23,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
-        android:text="@string/act_window_floor"
-        android:textColor="@color/act_window_description"
+        android:text="@string/act_room_floor"
+        android:textColor="@color/act_room_description"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/act_window_txt_window_room" />
+        app:layout_constraintTop_toBottomOf="@+id/act_room_txt_room_name" />
 
     <TextView
         android:id="@+id/textView14"
@@ -34,10 +34,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
-        android:text="@string/act_window_building"
-        android:textColor="@color/act_window_description"
+        android:text="@string/act_room_building"
+        android:textColor="@color/act_room_description"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/act_window_txt_window_floor" />
+        app:layout_constraintTop_toBottomOf="@+id/act_room_txt_room_floor" />
 
     <TextView
         android:id="@+id/textView15"
@@ -45,10 +45,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
-        android:text="@string/act_window_current_temp"
-        android:textColor="@color/act_window_description"
+        android:text="@string/act_room_current_temp"
+        android:textColor="@color/act_room_description"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/act_window_txt_window_building" />
+        app:layout_constraintTop_toBottomOf="@+id/act_room_txt_room_building" />
 
     <TextView
         android:id="@+id/textView16"
@@ -56,108 +56,87 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
-        android:text="@string/act_window_target_temp"
-        android:textColor="@color/act_window_description"
+        android:text="@string/act_room_target_temp"
+        android:textColor="@color/act_room_description"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/act_window_txt_window_current_temperature" />
+        app:layout_constraintTop_toBottomOf="@+id/act_room_txt_room_current_temperature" />
 
     <TextView
-        android:id="@+id/textView17"
+        android:id="@+id/act_room_txt_room_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/act_window_status"
-        android:textColor="@color/act_window_description"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/act_window_txt_window_target_temperature" />
-
-    <TextView
-        android:id="@+id/textView12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/act_window_room"
-        android:textColor="@color/act_window_description"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/act_window_txt_window_name" />
-
-    <TextView
-        android:id="@+id/act_window_txt_window_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="@color/act_window_property"
+        android:textColor="@color/act_room_property"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <TextView
-        android:id="@+id/act_window_txt_window_room"
+        android:id="@+id/act_room_txt_room_floor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="@color/act_window_property"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView12" />
-
-    <TextView
-        android:id="@+id/act_window_txt_window_floor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="@color/act_window_property"
+        android:textColor="@color/act_room_property"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
     <TextView
-        android:id="@+id/act_window_txt_window_building"
+        android:id="@+id/act_room_txt_room_building"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="@color/act_window_property"
+        android:textColor="@color/act_room_property"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
     <TextView
-        android:id="@+id/act_window_txt_window_current_temperature"
+        android:id="@+id/act_room_txt_room_current_temperature"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="@color/act_window_property"
+        android:textColor="@color/act_room_property"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
     <TextView
-        android:id="@+id/act_window_txt_window_target_temperature"
+        android:id="@+id/act_room_txt_room_target_temperature"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="@color/act_window_property"
+        android:textColor="@color/act_room_property"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
-    <TextView
-        android:id="@+id/act_window_txt_window_status"
+    <Switch
+        android:id="@+id/act_room_switch_delete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
+        android:onClick="onDeleteSwitch"
+        android:text="@string/act_room_switch_delete"
+        app:layout_constraintBottom_toTopOf="@+id/act_room_btn_delete"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/act_room_btn_delete"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="60dp"
+        android:background="@color/act_room_delete_button"
+        android:onClick="onDeleteRoom"
+        android:text="@string/act_room_btn_delete"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="@color/act_window_property"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView17" />
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,18 +10,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Faircorp2">
         <activity
-            android:name=".WindowsActivity"
-            android:parentActivityName=".MainActivity"/>
+            android:name=".activity.window.WindowsActivity"
+            android:parentActivityName=".activity.MainActivity"/>
         <activity
-            android:name=".HeatersActivity"
-            android:parentActivityName=".MainActivity"/>
+            android:name=".activity.heater.HeatersActivity"
+            android:parentActivityName=".activity.MainActivity"/>
         <activity
-            android:name=".WindowActivity"
-            android:parentActivityName=".WindowsActivity" />
+            android:name=".activity.window.WindowActivity"
+            android:parentActivityName=".activity.window.WindowsActivity" />
         <activity
-            android:name=".HeaterActivity"
-            android:parentActivityName=".WindowsActivity" />
-        <activity android:name=".MainActivity">
+            android:name=".activity.heater.HeaterActivity"
+            android:parentActivityName=".activity.window.WindowsActivity" />
+        <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
