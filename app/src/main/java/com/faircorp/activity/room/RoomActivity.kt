@@ -14,16 +14,20 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
+/**
+ * Activity which describe a room, access only by RoomsActivity
+ */
 class RoomActivity : BasicActivity() {
 
-    var id = 0L;
+    var id = 0L
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_room)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        id = intent.getLongExtra(ROOM_ID_PARAM,0)
+        id = intent.getLongExtra(ROOM_ID_PARAM, 0)
         val name = intent.getStringExtra(ROOM_NAME_PARAM)
         val floor = intent.getStringExtra(ROOM_FLOOR_PARAM)
         val building = intent.getStringExtra(ROOM_BUILDING_PARAM)
@@ -49,10 +53,12 @@ class RoomActivity : BasicActivity() {
     }
 
     fun onViewWindows(view: View) {
+
         val intent = Intent(this, RoomWindowsActivity::class.java)
                 .putExtra(ROOM_ID_PARAM, id)
 
         startActivity(intent)
+
     }
 
     fun onOpenWindows(view: View) {
@@ -79,6 +85,7 @@ class RoomActivity : BasicActivity() {
                     }
 
         }
+
     }
 
     fun onCloseWindows(view: View) {
@@ -105,13 +112,16 @@ class RoomActivity : BasicActivity() {
                     }
 
         }
+
     }
 
     fun onViewHeaters(view: View) {
+
         val intent = Intent(this, RoomHeatersActivity::class.java)
                 .putExtra(ROOM_ID_PARAM, id)
 
         startActivity(intent)
+
     }
 
     fun onOnHeaters(view: View) {
@@ -138,6 +148,7 @@ class RoomActivity : BasicActivity() {
                     }
 
         }
+
     }
 
     fun onOffHeaters(view: View) {
@@ -164,31 +175,30 @@ class RoomActivity : BasicActivity() {
                     }
 
         }
+
     }
 
     fun onDeleteSwitch(view: View) {
+
         val roomDeleteSwitch = findViewById<Switch>(R.id.act_room_switch_delete)
         val roomDeleteButton = findViewById<TextView>(R.id.act_room_btn_delete)
 
-        if(roomDeleteSwitch.isChecked) {
-            roomDeleteButton.isClickable = true
-        } else {
-            roomDeleteButton.isClickable = false
-        }
+        roomDeleteButton.isClickable = roomDeleteSwitch.isChecked
+
     }
 
     fun onDeleteRoom(view: View) {
 
         val act = this
 
-            lifecycleScope.launch(context = Dispatchers.IO) {
-                runCatching { ApiServices().roomsApiService.deleteById(id).execute() }
+        lifecycleScope.launch(context = Dispatchers.IO) {
+            runCatching { ApiServices().roomsApiService.deleteById(id).execute() }
                     .onFailure {
                         withContext(context = Dispatchers.Main) {
                             Toast.makeText(
-                                applicationContext,
-                                "Error on switching the status $it",
-                                Toast.LENGTH_LONG
+                                    applicationContext,
+                                    "Error on switching the status $it",
+                                    Toast.LENGTH_LONG
                             ).show()
                         }
                     }
@@ -199,5 +209,7 @@ class RoomActivity : BasicActivity() {
                     }
 
         }
+
     }
+
 }

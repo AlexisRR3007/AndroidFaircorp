@@ -11,23 +11,27 @@ import com.faircorp.R
 import com.faircorp.activity.*
 import com.faircorp.api.ApiServices
 import com.faircorp.api.heater.HeaterDto
-import com.faircorp.model.heater.OnHeaterSelectedListener
 import com.faircorp.model.heater.HeatersAdapterView
+import com.faircorp.model.heater.OnHeaterSelectedListener
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
+/**
+ * Activity which gives a list of heaters of a room, access only by RoomActivity
+ */
 class RoomHeatersActivity : BasicActivity(), OnHeaterSelectedListener {
 
-    var adapter : HeatersAdapterView? = null
-    var idRoom : Long? = null
+    var adapter: HeatersAdapterView? = null
+    var idRoom: Long? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_heaters)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        idRoom = intent.getLongExtra(ROOM_ID_PARAM,0)
+        idRoom = intent.getLongExtra(ROOM_ID_PARAM, 0)
 
         val recyclerView = findViewById<RecyclerView>(R.id.act_heaters_list)
         adapter = HeatersAdapterView(this)
@@ -54,9 +58,11 @@ class RoomHeatersActivity : BasicActivity(), OnHeaterSelectedListener {
                         }
                     }
         }
+
     }
 
     override fun onResume() {
+
         super.onResume()
         lifecycleScope.launch(context = Dispatchers.IO) {
             runCatching { ApiServices().roomsApiService.findAllHeatersFromRoom(idRoom!!).execute() }
@@ -74,10 +80,13 @@ class RoomHeatersActivity : BasicActivity(), OnHeaterSelectedListener {
                             ).show()
                         }
                     }
+
         }
+
     }
 
-    override fun onHeaterSelected(heater : HeaterDto) {
+    override fun onHeaterSelected(heater: HeaterDto) {
+
         val intent = Intent(this, RoomHeaterActivity::class.java)
                 .putExtra(HEATER_ID_PARAM, heater.id)
                 .putExtra(HEATER_NAME_PARAM, heater.name)
@@ -89,5 +98,7 @@ class RoomHeatersActivity : BasicActivity(), OnHeaterSelectedListener {
                 .putExtra(HEATER_STATUS_PARAM, heater.heaterStatus.toString())
 
         startActivity(intent)
+
     }
+
 }

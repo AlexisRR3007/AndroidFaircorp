@@ -33,30 +33,35 @@ const val ROOM_BUILDING_PARAM = "com.faircorp.roombuilding.attribute"
 const val ROOM_CURTEMP_PARAM = "com.faircorp.roomcurtemp.attribute"
 const val ROOM_TARTEMP_PARAM = "com.faircorp.roomtartemp.attribute"
 
+/**
+ * Main activity of the app
+ */
 class MainActivity : BasicActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
     }
 
     fun manageWindows(view: View) {
 
-        val intent = Intent(this, WindowsActivity::class.java);
+        val intent = Intent(this, WindowsActivity::class.java)
 
         startActivity(intent)
     }
 
     fun manageHeaters(view: View) {
 
-        val intent = Intent(this, HeatersActivity::class.java);
+        val intent = Intent(this, HeatersActivity::class.java)
 
         startActivity(intent)
     }
 
     fun manageRooms(view: View) {
 
-        val intent = Intent(this, RoomsActivity::class.java);
+        val intent = Intent(this, RoomsActivity::class.java)
 
         startActivity(intent)
     }

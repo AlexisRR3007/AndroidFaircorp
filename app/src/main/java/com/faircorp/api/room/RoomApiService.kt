@@ -2,13 +2,17 @@ package com.faircorp.api.room
 
 import com.faircorp.api.heater.HeaterDto
 import com.faircorp.api.window.WindowDto
-import retrofit2.http.GET
-import retrofit2.http.Path
 import retrofit2.Call
 import retrofit2.http.DELETE
+import retrofit2.http.GET
 import retrofit2.http.PUT
+import retrofit2.http.Path
 
+/**
+ * Interface which defines the different calls to the API for room
+ */
 interface RoomApiService {
+
     @GET("rooms")
     fun findAll(): Call<List<RoomDto>>
 
@@ -22,17 +26,18 @@ interface RoomApiService {
     fun findAllHeatersFromRoom(@Path("id") id: Long): Call<List<HeaterDto>>
 
     @PUT("rooms/{id}/openAllWindows")
-    fun openAllWindowsById(@Path("id") id: Long): Call <RoomDto>
+    fun openAllWindowsById(@Path("id") id: Long): Call<RoomDto>
 
     @PUT("rooms/{id}/closeAllWindows")
-    fun closeAllWindowsById(@Path("id") id: Long): Call <RoomDto>
+    fun closeAllWindowsById(@Path("id") id: Long): Call<RoomDto>
 
     @PUT("rooms/{id}/onAllHeaters")
-    fun onAllHeatersById(@Path("id") id: Long): Call <RoomDto>
+    fun onAllHeatersById(@Path("id") id: Long): Call<RoomDto>
 
     @PUT("rooms/{id}/offAllHeaters")
-    fun offAllHeatersById(@Path("id") id: Long): Call <RoomDto>
+    fun offAllHeatersById(@Path("id") id: Long): Call<RoomDto>
 
     @DELETE("rooms/{id}")
     fun deleteById(@Path("id") id: Long): Call<Void>
+
 }

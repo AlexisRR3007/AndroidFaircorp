@@ -17,17 +17,21 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
+/**
+ * Activity which gives a list of windows of a room, access only by RoomActivity
+ */
 class RoomWindowsActivity : BasicActivity(), OnWindowSelectedListener {
 
-    var adapter : WindowsAdapterView? = null
-    var idRoom : Long? = null
+    var adapter: WindowsAdapterView? = null
+    var idRoom: Long? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_windows)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        idRoom = intent.getLongExtra(ROOM_ID_PARAM,0)
+        idRoom = intent.getLongExtra(ROOM_ID_PARAM, 0)
 
         val recyclerView = findViewById<RecyclerView>(R.id.act_windows_list)
         adapter = WindowsAdapterView(this)
@@ -39,55 +43,61 @@ class RoomWindowsActivity : BasicActivity(), OnWindowSelectedListener {
 
         lifecycleScope.launch(context = Dispatchers.IO) {
             runCatching { ApiServices().roomsApiService.findAllWindowsFromRoom(idRoom!!).execute() }
-                .onSuccess {
-                    withContext(context = Dispatchers.Main) {
-                        adapter?.update(it.body() ?: emptyList())
+                    .onSuccess {
+                        withContext(context = Dispatchers.Main) {
+                            adapter?.update(it.body() ?: emptyList())
+                        }
                     }
-                }
-                .onFailure {
-                    withContext(context = Dispatchers.Main) {
-                        Toast.makeText(
-                            applicationContext,
-                            "Error on windows loading $it",
-                            Toast.LENGTH_LONG
-                        ).show()
+                    .onFailure {
+                        withContext(context = Dispatchers.Main) {
+                            Toast.makeText(
+                                    applicationContext,
+                                    "Error on windows loading $it",
+                                    Toast.LENGTH_LONG
+                            ).show()
+                        }
                     }
-                }
         }
+
     }
 
     override fun onResume() {
+
         super.onResume()
         lifecycleScope.launch(context = Dispatchers.IO) {
             runCatching { ApiServices().roomsApiService.findAllWindowsFromRoom(idRoom!!).execute() }
-                .onSuccess {
-                    withContext(context = Dispatchers.Main) {
-                        adapter?.update(it.body() ?: emptyList())
+                    .onSuccess {
+                        withContext(context = Dispatchers.Main) {
+                            adapter?.update(it.body() ?: emptyList())
+                        }
                     }
-                }
-                .onFailure {
-                    withContext(context = Dispatchers.Main) {
-                        Toast.makeText(
-                            applicationContext,
-                            "Error on windows loading $it",
-                            Toast.LENGTH_LONG
-                        ).show()
+                    .onFailure {
+                        withContext(context = Dispatchers.Main) {
+                            Toast.makeText(
+                                    applicationContext,
+                                    "Error on windows loading $it",
+                                    Toast.LENGTH_LONG
+                            ).show()
+                        }
                     }
-                }
         }
+
     }
 
-    override fun onWindowSelected(window : WindowDto) {
+    override fun onWindowSelected(window: WindowDto) {
+
         val intent = Intent(this, RoomWindowActivity::class.java)
-            .putExtra(WINDOW_ID_PARAM, window.id)
-            .putExtra(WINDOW_NAME_PARAM, window.name)
-            .putExtra(WINDOW_ROOM_PARAM, window.room.name)
-            .putExtra(WINDOW_FLOOR_PARAM, window.room.floor.floorNumber.toString())
-            .putExtra(WINDOW_BUILDING_PARAM, window.room.floor.building.name)
-            .putExtra(WINDOW_CURTEMP_PARAM, window.room.currentTemperature?.toString())
-            .putExtra(WINDOW_TARTEMP_PARAM, window.room.targetTemperature?.toString())
-            .putExtra(WINDOW_STATUS_PARAM, window.windowStatus.toString())
+                .putExtra(WINDOW_ID_PARAM, window.id)
+                .putExtra(WINDOW_NAME_PARAM, window.name)
+                .putExtra(WINDOW_ROOM_PARAM, window.room.name)
+                .putExtra(WINDOW_FLOOR_PARAM, window.room.floor.floorNumber.toString())
+                .putExtra(WINDOW_BUILDING_PARAM, window.room.floor.building.name)
+                .putExtra(WINDOW_CURTEMP_PARAM, window.room.currentTemperature?.toString())
+                .putExtra(WINDOW_TARTEMP_PARAM, window.room.targetTemperature?.toString())
+                .putExtra(WINDOW_STATUS_PARAM, window.windowStatus.toString())
 
         startActivity(intent)
+
     }
+
 }

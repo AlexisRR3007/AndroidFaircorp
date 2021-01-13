@@ -13,16 +13,20 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
+/**
+ * Activity which describe a window, access only by WindowsActivity
+ */
 class WindowActivity : BasicActivity() {
 
-    var id = 0L;
+    var id = 0L
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_window)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        id = intent.getLongExtra(WINDOW_ID_PARAM,0)
+        id = intent.getLongExtra(WINDOW_ID_PARAM, 0)
         val name = intent.getStringExtra(WINDOW_NAME_PARAM)
         val room = intent.getStringExtra(WINDOW_ROOM_PARAM)
         val floor = intent.getStringExtra(WINDOW_FLOOR_PARAM)
@@ -50,7 +54,7 @@ class WindowActivity : BasicActivity() {
         windowTarTemp.text = tartemp
         windowStatus.text = status
         windowStatusSwitch.isChecked = false
-        if(status=="OPEN") {
+        if (status == "OPEN") {
             windowStatusSwitch.isChecked = true
         }
         windowDeleteSwitch.isChecked = false
@@ -64,72 +68,72 @@ class WindowActivity : BasicActivity() {
         val windowStatus = findViewById<TextView>(R.id.act_window_txt_window_status)
 
         // Function is after the click so isChecked=true, it means the window was closed before
-        if(windowStatusSwitch.isChecked) {
-            windowStatusSwitch.isClickable = false;
+        if (windowStatusSwitch.isChecked) {
+            windowStatusSwitch.isClickable = false
             lifecycleScope.launch(context = Dispatchers.IO) {
                 runCatching { ApiServices().windowsApiService.switchStatusById(id).execute() }
-                    .onFailure {
-                        withContext(context = Dispatchers.Main) {
-                            Toast.makeText(
-                                applicationContext,
-                                "Error on switching the status $it",
-                                Toast.LENGTH_LONG
-                            ).show()
+                        .onFailure {
+                            withContext(context = Dispatchers.Main) {
+                                Toast.makeText(
+                                        applicationContext,
+                                        "Error on switching the status $it",
+                                        Toast.LENGTH_LONG
+                                ).show()
+                            }
                         }
-                    }
-                    .onSuccess {
-                        withContext(context = Dispatchers.Main) {
-                            windowStatus.text = "OPEN"
+                        .onSuccess {
+                            withContext(context = Dispatchers.Main) {
+                                windowStatus.text = "OPEN"
+                            }
                         }
-                    }
             }
-            windowStatusSwitch.isClickable = true;
+            windowStatusSwitch.isClickable = true
         } else {
-            windowStatusSwitch.isClickable = false;
+            windowStatusSwitch.isClickable = false
             lifecycleScope.launch(context = Dispatchers.IO) {
                 runCatching { ApiServices().windowsApiService.switchStatusById(id).execute() }
-                    .onFailure {
-                        withContext(context = Dispatchers.Main) {
-                            Toast.makeText(
-                                applicationContext,
-                                "Error on switching the status $it",
-                                Toast.LENGTH_LONG
-                            ).show()
+                        .onFailure {
+                            withContext(context = Dispatchers.Main) {
+                                Toast.makeText(
+                                        applicationContext,
+                                        "Error on switching the status $it",
+                                        Toast.LENGTH_LONG
+                                ).show()
+                            }
                         }
-                    }
-                    .onSuccess {
-                        withContext(context = Dispatchers.Main) {
-                            windowStatus.text = "CLOSED"
+                        .onSuccess {
+                            withContext(context = Dispatchers.Main) {
+                                windowStatus.text = "CLOSED"
+                            }
                         }
-                    }
             }
-            windowStatusSwitch.isClickable = true;
+
+            windowStatusSwitch.isClickable = true
         }
+
     }
 
     fun onDeleteSwitch(view: View) {
+
         val windowDeleteSwitch = findViewById<Switch>(R.id.act_window_switch_delete)
         val windowDeleteButton = findViewById<TextView>(R.id.act_window_btn_delete)
 
-        if(windowDeleteSwitch.isChecked) {
-            windowDeleteButton.isClickable = true
-        } else {
-            windowDeleteButton.isClickable = false
-        }
+        windowDeleteButton.isClickable = windowDeleteSwitch.isChecked
+
     }
 
     fun onDeleteWindow(view: View) {
 
         val act = this
 
-            lifecycleScope.launch(context = Dispatchers.IO) {
-                runCatching { ApiServices().windowsApiService.deleteById(id).execute() }
+        lifecycleScope.launch(context = Dispatchers.IO) {
+            runCatching { ApiServices().windowsApiService.deleteById(id).execute() }
                     .onFailure {
                         withContext(context = Dispatchers.Main) {
                             Toast.makeText(
-                                applicationContext,
-                                "Error on switching the status $it",
-                                Toast.LENGTH_LONG
+                                    applicationContext,
+                                    "Error on switching the status $it",
+                                    Toast.LENGTH_LONG
                             ).show()
                         }
                     }
@@ -138,7 +142,7 @@ class WindowActivity : BasicActivity() {
                             act.finish()
                         }
                     }
-
         }
     }
+
 }

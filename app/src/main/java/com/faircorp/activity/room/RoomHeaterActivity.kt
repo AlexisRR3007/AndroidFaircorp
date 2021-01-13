@@ -13,16 +13,20 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
+/**
+ * Activity which describe a heater, access only by RoomHeatersActivity
+ */
 class RoomHeaterActivity : BasicActivity() {
 
-    var id = 0L;
+    var id = 0L
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_heater)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        id = intent.getLongExtra(HEATER_ID_PARAM,0)
+        id = intent.getLongExtra(HEATER_ID_PARAM, 0)
         val name = intent.getStringExtra(HEATER_NAME_PARAM)
         val room = intent.getStringExtra(HEATER_ROOM_PARAM)
         val floor = intent.getStringExtra(HEATER_FLOOR_PARAM)
@@ -50,7 +54,7 @@ class RoomHeaterActivity : BasicActivity() {
         heaterTarTemp.text = tartemp
         heaterStatus.text = status
         heaterStatusSwitch.isChecked = false
-        if(status=="ON") {
+        if (status == "ON") {
             heaterStatusSwitch.isChecked = true
         }
         heaterDeleteSwitch.isChecked = false
@@ -64,8 +68,8 @@ class RoomHeaterActivity : BasicActivity() {
         val heaterStatus = findViewById<TextView>(R.id.act_heater_txt_heater_status)
 
         // Function is after the click so isChecked=true, it means the heater was closed before
-        if(heaterStatusSwitch.isChecked) {
-            heaterStatusSwitch.isClickable = false;
+        if (heaterStatusSwitch.isChecked) {
+            heaterStatusSwitch.isClickable = false
             lifecycleScope.launch(context = Dispatchers.IO) {
                 runCatching { ApiServices().heatersApiService.switchStatusById(id).execute() }
                         .onFailure {
@@ -83,9 +87,9 @@ class RoomHeaterActivity : BasicActivity() {
                             }
                         }
             }
-            heaterStatusSwitch.isClickable = true;
+            heaterStatusSwitch.isClickable = true
         } else {
-            heaterStatusSwitch.isClickable = false;
+            heaterStatusSwitch.isClickable = false
             lifecycleScope.launch(context = Dispatchers.IO) {
                 runCatching { ApiServices().heatersApiService.switchStatusById(id).execute() }
                         .onFailure {
@@ -103,19 +107,18 @@ class RoomHeaterActivity : BasicActivity() {
                             }
                         }
             }
-            heaterStatusSwitch.isClickable = true;
+            heaterStatusSwitch.isClickable = true
         }
+
     }
 
     fun onDeleteSwitch(view: View) {
+
         val heaterDeleteSwitch = findViewById<Switch>(R.id.act_heater_switch_delete)
         val heaterDeleteButton = findViewById<TextView>(R.id.act_heater_btn_delete)
 
-        if(heaterDeleteSwitch.isChecked) {
-            heaterDeleteButton.isClickable = true
-        } else {
-            heaterDeleteButton.isClickable = false
-        }
+        heaterDeleteButton.isClickable = heaterDeleteSwitch.isChecked
+
     }
 
     fun onDeleteHeater(view: View) {
@@ -140,5 +143,7 @@ class RoomHeaterActivity : BasicActivity() {
                     }
 
         }
+
     }
+
 }
