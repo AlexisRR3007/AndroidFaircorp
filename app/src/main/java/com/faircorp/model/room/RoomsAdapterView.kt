@@ -11,7 +11,7 @@ import com.faircorp.api.room.RoomDto
 class RoomsAdapterView(val listener: OnRoomSelectedListener): RecyclerView.Adapter<RoomsAdapterView.RoomViewHolder>() { // (1)
 
     inner class RoomViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val name: TextView = view.findViewById(R.id.act_rooms_item_txt_room_floor)
+        val name: TextView = view.findViewById(R.id.act_rooms_item_txt_room_name)
         val floor: TextView = view.findViewById(R.id.act_rooms_item_txt_room_floor)
         val building: TextView = view.findViewById(R.id.act_rooms_item_txt_room_building)
     }
@@ -36,7 +36,7 @@ class RoomsAdapterView(val listener: OnRoomSelectedListener): RecyclerView.Adapt
         val room = items[position]
         holder.apply {
             name.text = room.name
-            floor.text = room.floor.floorNumber.toString()
+            floor.text = "Floor " + room.floor.floorNumber.toString()
             building.text =  room.floor.building.name
             itemView.setOnClickListener { listener.onRoomSelected(room) } // (1)
         }

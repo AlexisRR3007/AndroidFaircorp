@@ -1,5 +1,7 @@
 package com.faircorp.api.room
 
+import com.faircorp.api.heater.HeaterDto
+import com.faircorp.api.window.WindowDto
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.Call
@@ -12,6 +14,12 @@ interface RoomApiService {
 
     @GET("rooms/{id}")
     fun findById(@Path("id") id: Long): Call<RoomDto>
+
+    @GET("rooms/{id}/windows")
+    fun findAllWindowsFromRoom(@Path("id") id: Long): Call<List<WindowDto>>
+
+    @GET("rooms/{id}/heaters")
+    fun findAllHeatersFromRoom(@Path("id") id: Long): Call<List<HeaterDto>>
 
     @PUT("rooms/{id}/openAllWindows")
     fun openAllWindowsById(@Path("id") id: Long): Call <RoomDto>

@@ -1,4 +1,4 @@
-package com.faircorp.activity.window
+package com.faircorp.activity.room
 
 import android.os.Bundle
 import android.view.View
@@ -13,7 +13,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class WindowActivity : BasicActivity() {
+class RoomWindowActivity : BasicActivity() {
 
     var id = 0L;
 

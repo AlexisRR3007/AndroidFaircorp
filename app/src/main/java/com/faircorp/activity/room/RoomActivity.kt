@@ -1,5 +1,6 @@
 package com.faircorp.activity.room
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Switch
@@ -8,6 +9,8 @@ import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import com.faircorp.R
 import com.faircorp.activity.*
+import com.faircorp.activity.window.WindowActivity
+import com.faircorp.activity.window.WindowsActivity
 import com.faircorp.api.ApiServices
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -45,6 +48,13 @@ class RoomActivity : BasicActivity() {
         roomDeleteSwitch.isChecked = false
         roomDeleteButton.isClickable = false
 
+    }
+
+    fun onViewWindows(view: View) {
+        val intent = Intent(this, RoomWindowsActivity::class.java)
+                .putExtra(ROOM_ID_PARAM, id)
+
+        startActivity(intent)
     }
 
     fun onDeleteSwitch(view: View) {

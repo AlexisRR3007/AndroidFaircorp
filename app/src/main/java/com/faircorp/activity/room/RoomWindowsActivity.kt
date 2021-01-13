@@ -1,4 +1,4 @@
-package com.faircorp.activity.window
+package com.faircorp.activity.room
 
 import android.content.Intent
 import android.os.Bundle
@@ -17,14 +17,17 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class WindowsActivity : BasicActivity(), OnWindowSelectedListener {
+class RoomWindowsActivity : BasicActivity(), OnWindowSelectedListener {
 
     var adapter : WindowsAdapterView? = null
+    var idRoom : Long? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_windows)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        idRoom = intent.getLongExtra(ROOM_ID_PARAM,0)
 
         val recyclerView = findViewById<RecyclerView>(R.id.act_windows_list)
         adapter = WindowsAdapterView(this)
@@ -35,7 +38,7 @@ class WindowsActivity : BasicActivity(), OnWindowSelectedListener {
         recyclerView.adapter = adapter
 
         lifecycleScope.launch(context = Dispatchers.IO) {
-            runCatching { ApiServices().windowsApiService.findAll().execute() }
+            runCatching { ApiServices().roomsApiService.findAllWindowsFromRoom(idRoom!!).execute() }
                 .onSuccess {
                     withContext(context = Dispatchers.Main) {
                         adapter?.update(it.body() ?: emptyList())
@@ -56,7 +59,7 @@ class WindowsActivity : BasicActivity(), OnWindowSelectedListener {
     override fun onResume() {
         super.onResume()
         lifecycleScope.launch(context = Dispatchers.IO) {
-            runCatching { ApiServices().windowsApiService.findAll().execute() }
+            runCatching { ApiServices().roomsApiService.findAllWindowsFromRoom(idRoom!!).execute() }
                 .onSuccess {
                     withContext(context = Dispatchers.Main) {
                         adapter?.update(it.body() ?: emptyList())
@@ -75,7 +78,7 @@ class WindowsActivity : BasicActivity(), OnWindowSelectedListener {
     }
 
     override fun onWindowSelected(window : WindowDto) {
-        val intent = Intent(this, WindowActivity::class.java)
+        val intent = Intent(this, RoomWindowActivity::class.java)
             .putExtra(WINDOW_ID_PARAM, window.id)
             .putExtra(WINDOW_NAME_PARAM, window.name)
             .putExtra(WINDOW_ROOM_PARAM, window.room.name)
