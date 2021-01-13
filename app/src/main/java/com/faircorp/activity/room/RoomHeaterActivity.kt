@@ -31,7 +31,7 @@ class RoomHeaterActivity : BasicActivity() {
         val tartemp = intent.getStringExtra(HEATER_TARTEMP_PARAM)
         val status = intent.getStringExtra(HEATER_STATUS_PARAM)
 
-        val heaterName = findViewById<TextView>(R.id.act_room_txt_room_name)
+        val heaterName = findViewById<TextView>(R.id.act_heater_txt_heater_name)
         val heaterRoom = findViewById<TextView>(R.id.act_heater_txt_heater_room)
         val heaterFloor = findViewById<TextView>(R.id.act_heater_txt_heater_floor)
         val heaterBuilding = findViewById<TextView>(R.id.act_heater_txt_heater_building)
@@ -50,7 +50,7 @@ class RoomHeaterActivity : BasicActivity() {
         heaterTarTemp.text = tartemp
         heaterStatus.text = status
         heaterStatusSwitch.isChecked = false
-        if(status=="OPEN") {
+        if(status=="ON") {
             heaterStatusSwitch.isChecked = true
         }
         heaterDeleteSwitch.isChecked = false

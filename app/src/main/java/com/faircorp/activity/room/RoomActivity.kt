@@ -9,8 +9,6 @@ import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import com.faircorp.R
 import com.faircorp.activity.*
-import com.faircorp.activity.window.WindowActivity
-import com.faircorp.activity.window.WindowsActivity
 import com.faircorp.api.ApiServices
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -74,7 +72,7 @@ class RoomActivity : BasicActivity() {
                         withContext(context = Dispatchers.Main) {
                             Toast.makeText(
                                     applicationContext,
-                                    "Done",
+                                    "All windows opened",
                                     Toast.LENGTH_LONG
                             ).show()
                         }
@@ -100,7 +98,7 @@ class RoomActivity : BasicActivity() {
                         withContext(context = Dispatchers.Main) {
                             Toast.makeText(
                                     applicationContext,
-                                    "Done",
+                                    "All windows closed",
                                     Toast.LENGTH_LONG
                             ).show()
                         }
@@ -133,7 +131,7 @@ class RoomActivity : BasicActivity() {
                         withContext(context = Dispatchers.Main) {
                             Toast.makeText(
                                     applicationContext,
-                                    "Done",
+                                    "All heaters on",
                                     Toast.LENGTH_LONG
                             ).show()
                         }
@@ -159,7 +157,7 @@ class RoomActivity : BasicActivity() {
                         withContext(context = Dispatchers.Main) {
                             Toast.makeText(
                                     applicationContext,
-                                    "Done",
+                                    "All heaters off",
                                     Toast.LENGTH_LONG
                             ).show()
                         }

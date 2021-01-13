@@ -29,10 +29,10 @@
             android:parentActivityName=".activity.window.WindowsActivity" />
         <activity
             android:name=".activity.room.RoomWindowActivity"
-            android:parentActivityName=".activity.room.RoomWindowsActivity" />
+            android:parentActivityName=".activity.room.RoomsActivity" />
         <activity
             android:name=".activity.room.RoomHeaterActivity"
-            android:parentActivityName=".activity.room.RoomHeatersActivity" />
+            android:parentActivityName=".activity.room.RoomsActivity" />
         <activity
             android:name=".activity.heater.HeaterActivity"
             android:parentActivityName=".activity.heater.HeatersActivity" />

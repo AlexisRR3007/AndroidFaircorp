@@ -38,7 +38,7 @@ class HeatersAdapterView(val listener: OnHeaterSelectedListener): RecyclerView.A
             name.text = heater.name
             status.text = heater.heaterStatus.toString()
             room.text =  heater.room.name
-            itemView.setOnClickListener { listener.onHeaterSelected(heater) } // (1)
+            itemView.setOnClickListener { listener.onHeaterSelected(heater) }
         }
     }
 

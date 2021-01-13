@@ -31,7 +31,7 @@ class RoomWindowActivity : BasicActivity() {
         val tartemp = intent.getStringExtra(WINDOW_TARTEMP_PARAM)
         val status = intent.getStringExtra(WINDOW_STATUS_PARAM)
 
-        val windowName = findViewById<TextView>(R.id.act_room_txt_room_name)
+        val windowName = findViewById<TextView>(R.id.act_window_txt_window_name)
         val windowRoom = findViewById<TextView>(R.id.act_window_txt_window_room)
         val windowFloor = findViewById<TextView>(R.id.act_window_txt_window_floor)
         val windowBuilding = findViewById<TextView>(R.id.act_window_txt_window_building)
