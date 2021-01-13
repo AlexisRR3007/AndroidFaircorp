@@ -29,6 +29,14 @@
     <string name="act_room_current_temp">Current room temperature</string>
     <string name="act_room_btn_delete">DELETE THE ROOM</string>
     <string name="act_room_switch_delete">Enable the delete</string>
+    <string name="act_room_btn_open_windows">Open all</string>
+    <string name="act_room_btn_close_windows">Close all</string>
+    <string name="act_room_btn_windows">Manage the room\'s windows</string>
+    <string name="act_room_btn_on_heaters">On all</string>
+    <string name="act_room_btn_off_heaters">Off all</string>
+    <string name="act_room_btn_heaters">Manage the room\'s heaters</string>
+    <string name="act_room_txt_window_manage">Windows</string>
+    <string name="act_room_txt_heater_manage">Heaters</string>
 
     <string name="act_main_welcome">Welcome on faircorp,\nthe app to manage buildings</string>
     <string name="act_main_manage_windows">Manage windows</string>

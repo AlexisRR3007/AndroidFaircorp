@@ -57,6 +57,117 @@ class RoomActivity : BasicActivity() {
         startActivity(intent)
     }
 
+    fun onOpenWindows(view: View) {
+
+        lifecycleScope.launch(context = Dispatchers.IO) {
+            runCatching { ApiServices().roomsApiService.openAllWindowsById(id).execute() }
+                    .onFailure {
+                        withContext(context = Dispatchers.Main) {
+                            Toast.makeText(
+                                    applicationContext,
+                                    "Error on switching the status $it",
+                                    Toast.LENGTH_LONG
+                            ).show()
+                        }
+                    }
+                    .onSuccess {
+                        withContext(context = Dispatchers.Main) {
+                            Toast.makeText(
+                                    applicationContext,
+                                    "Done",
+                                    Toast.LENGTH_LONG
+                            ).show()
+                        }
+                    }
+
+        }
+    }
+
+    fun onCloseWindows(view: View) {
+
+        lifecycleScope.launch(context = Dispatchers.IO) {
+            runCatching { ApiServices().roomsApiService.closeAllWindowsById(id).execute() }
+                    .onFailure {
+                        withContext(context = Dispatchers.Main) {
+                            Toast.makeText(
+                                    applicationContext,
+                                    "Error on switching the status $it",
+                                    Toast.LENGTH_LONG
+                            ).show()
+                        }
+                    }
+                    .onSuccess {
+                        withContext(context = Dispatchers.Main) {
+                            Toast.makeText(
+                                    applicationContext,
+                                    "Done",
+                                    Toast.LENGTH_LONG
+                            ).show()
+                        }
+                    }
+
+        }
+    }
+
+    fun onViewHeaters(view: View) {
+        val intent = Intent(this, RoomHeatersActivity::class.java)
+                .putExtra(ROOM_ID_PARAM, id)
+
+        startActivity(intent)
+    }
+
+    fun onOnHeaters(view: View) {
+
+        lifecycleScope.launch(context = Dispatchers.IO) {
+            runCatching { ApiServices().roomsApiService.onAllHeatersById(id).execute() }
+                    .onFailure {
+                        withContext(context = Dispatchers.Main) {
+                            Toast.makeText(
+                                    applicationContext,
+                                    "Error on switching the status $it",
+                                    Toast.LENGTH_LONG
+                            ).show()
+                        }
+                    }
+                    .onSuccess {
+                        withContext(context = Dispatchers.Main) {
+                            Toast.makeText(
+                                    applicationContext,
+                                    "Done",
+                                    Toast.LENGTH_LONG
+                            ).show()
+                        }
+                    }
+
+        }
+    }
+
+    fun onOffHeaters(view: View) {
+
+        lifecycleScope.launch(context = Dispatchers.IO) {
+            runCatching { ApiServices().roomsApiService.offAllHeatersById(id).execute() }
+                    .onFailure {
+                        withContext(context = Dispatchers.Main) {
+                            Toast.makeText(
+                                    applicationContext,
+                                    "Error on switching the status $it",
+                                    Toast.LENGTH_LONG
+                            ).show()
+                        }
+                    }
+                    .onSuccess {
+                        withContext(context = Dispatchers.Main) {
+                            Toast.makeText(
+                                    applicationContext,
+                                    "Done",
+                                    Toast.LENGTH_LONG
+                            ).show()
+                        }
+                    }
+
+        }
+    }
+
     fun onDeleteSwitch(view: View) {
         val roomDeleteSwitch = findViewById<Switch>(R.id.act_room_switch_delete)
         val roomDeleteButton = findViewById<TextView>(R.id.act_room_btn_delete)
